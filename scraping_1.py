@@ -1,23 +1,31 @@
 import requests
 from bs4 import BeautifulSoup
-import csv
-
-with open('ria_scraping.csv', mode='w') as ria_scraping:
-    ria_scraping = csv.writer(ria_scraping, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-    ria_scraping.writerow('URL' 'Title' 'Article')
-
-#URL = "https://ria.ru/"
 
 URL = "https://ria.ru/20210705/more-1740010917.html"
-print(URL)
-
 page = requests.get(URL)
 soup = BeautifulSoup(page.content, "html.parser")
 
-title = soup.find("title")
-print(title)
+class Scraper:
 
-article = soup.find("div", itemprop="articleBody")
-print(article)
+    def start(self):
+        self._url()
+        self._title()
+        self._article()
 
-ria_scraping.writerow([URL], [title], [article])
+    def _url(self):
+        print(URL)
+
+    def _title(self):
+        title = soup.find("title")
+        print(title)
+
+    # def _description(self):
+    #     print(description)
+
+    def _article(self):
+        article = soup.find("div", itemprop="articleBody")
+        print(article)
+
+if __name__ == '__main__':
+    sc = Scraper()
+    sc.start()
