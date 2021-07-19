@@ -93,3 +93,5 @@ conditions = "condition1=1 AND condition2=2"
 sql = (f"SELECT {fields} "
        f"FROM {table} "
        f"WHERE {conditions};")
+
+"""Try this later: https://www.scrapingbee.com/blog/crawling-python/"""
